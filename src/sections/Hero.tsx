@@ -129,7 +129,7 @@ function SecondaryBtn() {
   const [hovered, setHovered] = React.useState(false);
   return (
     <motion.a
-      href="/Jehan Usama .pdf"
+      href="/cv/Jehan_Usama.pdf"
       download
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.97 }}

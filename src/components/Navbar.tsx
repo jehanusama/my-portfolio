@@ -104,19 +104,20 @@ export const Navbar = () => {
             onClick={() => scrollTo("#home")}
             className="flex items-center gap-3 group"
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center justify-center w-10 h-10 rounded-xl"
-              style={{
-                background: "linear-gradient(135deg, var(--accent-light) 0%, var(--accent-primary) 100%)",
-                boxShadow: "0 0 16px rgba(43,87,72,0.4)",
-              }}
-            >
-              <span className="text-white font-black tracking-tighter text-lg leading-none">
-                JU
+            <div className="relative flex items-center justify-center w-10 h-10 font-extrabold text-[30px] leading-none tracking-tighter">
+              <span 
+                className="relative z-10" 
+                style={{ color: "var(--accent-primary)" }}
+              >
+                J
               </span>
-            </motion.div>
+              <span 
+                className="absolute z-0 transition-all duration-200 ease-out group-hover:translate-x-[5px] group-hover:opacity-100"
+                style={{ color: "var(--accent-light)", opacity: 0.9, left: "48%" }}
+              >
+                U
+              </span>
+            </div>
             <span
               className="hidden sm:block font-bold text-lg tracking-tight transition-colors duration-300 group-hover:text-[var(--accent-light)]"
               style={{ color: "var(--text-primary)" }}

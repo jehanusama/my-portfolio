@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .letter { 
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      font-weight: 900; 
+      font-size: 80px; 
+    }
+  </style>
+  <text x="62" y="82" text-anchor="middle" fill="#4a8a73" opacity="0.9" class="letter">U</text>
+  <text x="38" y="82" text-anchor="middle" fill="#2B5748" class="letter">J</text>
+</svg>

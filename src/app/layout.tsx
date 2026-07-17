@@ -16,8 +16,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jehan Usama | Front-End Developer",
-  description: "Portfolio of Jehan Usama, a Front-End Developer specializing in React.js and Vue.js.",
+  title: "Jehan Usama",
+  description: "Portfolio of Jehan Usama, a Front-End Developer specializing in React.js, Next.js and Vue.js.",
 };
 
 export default function RootLayout({
