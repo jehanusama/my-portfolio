@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/Cursor";
 import NoiseBackground from "@/components/NoiseBackground";
+import { Navbar } from "@/components/Navbar";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable} dark`}
     >
       <body className="min-h-screen bg-background text-foreground antialiased selection:bg-accent/30">
+        <Navbar />
         <NoiseBackground />
         <Cursor />
         {children}
