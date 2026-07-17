@@ -231,7 +231,7 @@ export const Hero = () => {
               icon={<Linkedin className="w-[18px] h-[18px]" />}
             />
             <SocialBtn
-              href="mailto:jehan@example.com"
+              href="mailto:jehanusama3@gmail.com"
               label="Email"
               icon={<Mail className="w-[18px] h-[18px]" />}
               external={false}
