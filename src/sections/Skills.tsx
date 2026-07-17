@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   SiHtml5, SiCss, SiSass, SiJavascript, SiTypescript,
   SiTailwindcss, SiBootstrap, SiReact, SiNextdotjs, SiVuedotjs,
@@ -67,18 +67,24 @@ interface SkillCardProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Icon: React.ComponentType<any> | null;
   color: string;
-  index: number;
 }
 
-function SkillCard({ name, Icon, color, index }: SkillCardProps) {
+const cardVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" }
+  },
+  exit: { opacity: 0, scale: 0.8 }
+};
+
+function SkillCard({ name, Icon, color }: SkillCardProps) {
   const [hovered, setHovered] = React.useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.82, y: 16 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.82, y: 16 }}
-      transition={{ duration: 0.35, delay: index * 0.045, ease: "easeOut" }}
+      variants={cardVariants}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl border cursor-default transition-all duration-300"
@@ -157,6 +163,21 @@ function TabBtn({ label, active, onClick }: TabBtnProps) {
 /* ═══════════════════════════════════════════════════════
    Skills Section
 ═══════════════════════════════════════════════════════ */
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  },
+  exit: {
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1
+    }
+  }
+};
+
 export const Skills = () => {
   const [activeTab, setActiveTab] = React.useState<CategoryId>("frontend");
 
@@ -224,19 +245,19 @@ export const Skills = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            exit="exit"
+            viewport={{ once: true, amount: 0.2 }}
             className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3"
           >
-            {activeCategory.skills.map((skill, i) => (
+            {activeCategory.skills.map((skill) => (
               <SkillCard
                 key={skill.name}
                 name={skill.name}
                 Icon={skill.Icon}
                 color={skill.color}
-                index={i}
               />
             ))}
           </motion.div>

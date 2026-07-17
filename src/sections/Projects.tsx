@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Github } from "@/components/Icons";
 import { ExternalLink } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
@@ -68,18 +68,23 @@ function LinkBtn({ href, label, icon }: LinkBtnProps) {
 
 interface ProjectCardProps {
   project: Project;
-  index: number;
   placeholderGradient: string;
 }
-function ProjectCard({ project, index, placeholderGradient }: ProjectCardProps) {
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.55, ease: "easeOut" }
+  }
+};
+
+function ProjectCard({ project, placeholderGradient }: ProjectCardProps) {
   const [hovered, setHovered] = React.useState(false);
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay: (index % 2) * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      variants={cardVariants}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="flex flex-col rounded-2xl border overflow-hidden transition-all duration-400"
@@ -196,6 +201,15 @@ function ProjectCard({ project, index, placeholderGradient }: ProjectCardProps) 
 }
 
 
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
 export const Projects = () => {
   return (
     <section
@@ -241,16 +255,21 @@ export const Projects = () => {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
+          {projects.map((project, i) => (
             <ProjectCard
               key={project.id}
               project={project}
-              index={index}
-              placeholderGradient={PLACEHOLDERS[index % PLACEHOLDERS.length]}
+              placeholderGradient={PLACEHOLDERS[i % PLACEHOLDERS.length]}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

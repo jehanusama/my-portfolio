@@ -65,8 +65,8 @@ function ExperienceCard({ entry, side, index }: ExperienceCardProps) {
     <motion.div
       initial={{ opacity: 0, x: slideFrom }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="p-5 md:p-6 rounded-2xl border transition-all duration-300"

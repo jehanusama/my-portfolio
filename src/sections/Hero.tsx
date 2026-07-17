@@ -147,6 +147,61 @@ function SecondaryBtn() {
   );
 }
 
+const TITLES = [
+  "Front-End Engineer",
+  "React & Next.js Developer",
+];
+
+function TypewriterEffect() {
+  const [text, setText] = React.useState("");
+  const [titleIndex, setTitleIndex] = React.useState(0);
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
+  React.useEffect(() => {
+    const currentTitle = TITLES[titleIndex];
+    let timeoutId: NodeJS.Timeout;
+
+    if (isDeleting) {
+      if (text === "") {
+        timeoutId = setTimeout(() => {
+          setIsDeleting(false);
+          setTitleIndex((prev) => (prev + 1) % TITLES.length);
+        }, 500);
+      } else {
+        timeoutId = setTimeout(() => {
+          setText((prev) => prev.slice(0, -1));
+        }, 40);
+      }
+    } else {
+      if (text === currentTitle) {
+        timeoutId = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2500);
+      } else {
+        timeoutId = setTimeout(() => {
+          setText((prev) => currentTitle.slice(0, prev.length + 1));
+        }, 70);
+      }
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [text, isDeleting, titleIndex]);
+
+  return (
+    <div
+      className="mt-3 text-lg md:text-xl font-semibold tracking-wide flex items-center justify-center min-h-[32px]"
+      style={{ color: "var(--accent-light)" }}
+    >
+      <span>{text}</span>
+      <motion.span
+        animate={{ opacity: [1, 0, 1] }}
+        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+        className="ml-[2px] w-[2px] h-[1.1em]"
+        style={{ background: "var(--accent-light)" }}
+      />
+    </div>
+  );
+}
 
 export const Hero = () => {
   return (
@@ -169,7 +224,7 @@ export const Hero = () => {
               boxShadow:   "0 0 18px rgba(43,87,72,0.25)",
             }}
           >
-            <span>👋</span> Available for opportunities
+            Available for opportunities
           </span>
         </Reveal>
 
@@ -189,14 +244,9 @@ export const Hero = () => {
           </h1>
         </Reveal>
 
-        {/* Role */}  
+        {/* Role Typewriter */}  
         <Reveal delay={0.4} width="fit-content">
-          <p
-            className="mt-3 text-lg md:text-xl font-semibold tracking-wide"
-            style={{ color: "var(--accent-light)" }}
-          >
-            Front-End Engineer
-          </p>
+          <TypewriterEffect />
         </Reveal>
 
         {/* Tagline */}
