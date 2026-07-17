@@ -1,35 +1,56 @@
-import { Github, Linkedin, Twitter } from "@/components/Icons";
+"use client";
+
+import { ChevronUp } from "lucide-react";
 
 export const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <footer className="border-t border-violet-900/30 py-10 bg-[#0c0917] relative z-10">
-      <div className="container mx-auto px-6 md:px-20">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col md:flex-row items-center gap-6">
-            <div className="flex items-center gap-2">
-              <span className="text-xl font-bold tracking-tight text-rose-50">
-                Jehan<span className="text-fuchsia-400">Usama</span>
-              </span>
-            </div>
-            <div className="hidden md:block w-px h-5 bg-violet-800/50" />
-            <div className="text-violet-300/50 text-sm">
-              Front-End Developer
-            </div>
-          </div>
+    <footer
+      className="relative z-10 py-8 px-6"
+      style={{
+        background: "var(--bg-primary)",
+        borderTop: "1px solid var(--accent-primary)",
+      }}
+    >
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 relative">
+        
+        {/* Spacer for mobile to keep text centered, but invisible */}
+        <div className="hidden sm:block w-10"></div>
+        
+        {/* Center Text */}
+        <p className="text-xs sm:text-sm text-center" style={{ color: "var(--text-muted)" }}>
+          © 2026 Jehan Usama. All rights reserved.
+        </p>
 
-          <div className="flex items-center gap-6 text-violet-400/40">
-            <a href="https://github.com/jehanusama" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors" aria-label="GitHub">
-              <Github className="w-5 h-5" />
-            </a>
-            <a href="https://linkedin.com/in/jehan-usama" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors" aria-label="LinkedIn">
-              <Linkedin className="w-5 h-5" />
-            </a>
-          </div>
-        </div>
-
-        <div className="mt-8 text-center text-violet-700/60 text-xs">
-          © {new Date().getFullYear()} Jehan Usama. Designed and built with passion.
-        </div>
+        {/* Right side back-to-top button */}
+        <button
+          onClick={scrollToTop}
+          aria-label="Back to top"
+          className="flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300"
+          style={{
+            background: "var(--bg-secondary)",
+            border: "1px solid var(--border-color)",
+            color: "var(--accent-light)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "var(--accent-primary)";
+            e.currentTarget.style.borderColor = "var(--accent-primary)";
+            e.currentTarget.style.color = "#ffffff";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "var(--bg-secondary)";
+            e.currentTarget.style.borderColor = "var(--border-color)";
+            e.currentTarget.style.color = "var(--accent-light)";
+          }}
+        >
+          <ChevronUp className="w-5 h-5" />
+        </button>
       </div>
     </footer>
   );
