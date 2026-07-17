@@ -1,144 +1,247 @@
 "use client";
-import { Download, Mail } from "lucide-react";
-import { Github, Linkedin } from "@/components/Icons";
+
+import React from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import Image from "next/image";
+import { Mail, ChevronDown } from "lucide-react";
+import { Github, Linkedin } from "@/components/Icons";
+import { Reveal } from "@/components/Reveal";
+
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+function AnimatedBlob() {
+  return (
+    <div
+      className="absolute inset-0 overflow-hidden pointer-events-none"
+      aria-hidden="true"
+    >
+      {/* Primary blob */}
+      <motion.div
+        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(43,87,72,0.28) 0%, rgba(43,87,72,0.08) 55%, transparent 75%)",
+          filter: "blur(80px)",
+        }}
+        animate={{ y: [0, 40, -20, 0], x: [0, 30, -20, 0], scale: [1, 1.08, 0.95, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+      {/* Secondary blob */}
+      <motion.div
+        className="absolute bottom-0 right-0 w-[450px] h-[450px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(74,138,115,0.15) 0%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
+        animate={{ y: [0, -30, 20, 0], x: [0, -20, 30, 0], scale: [1, 0.92, 1.06, 1] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
+      {/* Dot-grid texture */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: "radial-gradient(circle, #4a8a73 1px, transparent 1px)",
+          backgroundSize: "36px 36px",
+        }}
+      />
+    </div>
+  );
+}
+
+function ScrollIndicator() {
+  return (
+    <motion.a
+      href="#about"
+      aria-label="Scroll down"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 2.4, duration: 0.6 }}
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 transition-colors duration-300"
+      style={{ color: "var(--text-muted)" }}
+    >
+      <span className="text-[11px] tracking-widest uppercase font-medium">Scroll</span>
+      <motion.div
+        animate={{ y: [0, 7, 0] }}
+        transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <ChevronDown className="w-5 h-5" strokeWidth={1.5} />
+      </motion.div>
+    </motion.a>
+  );
+}
+
+
+interface SocialBtnProps {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+  external?: boolean;
+}
+function SocialBtn({ href, label, icon, external = true }: SocialBtnProps) {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <motion.a
+      href={href}
+      aria-label={label}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      whileHover={{ rotate: 8, scale: 1.12 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 300, damping: 18 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="flex items-center justify-center w-11 h-11 rounded-full border transition-all duration-300"
+      style={{
+        borderColor: hovered ? "var(--accent-primary)" : "var(--border-color)",
+        background:  hovered ? "var(--accent-primary)" : "var(--bg-secondary)",
+        color:       hovered ? "#ffffff" : "var(--text-muted)",
+      }}
+    >
+      {icon}
+    </motion.a>
+  );
+}
+
+function PrimaryBtn() {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <motion.a
+      href="#projects"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.97 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="w-full sm:w-auto flex items-center justify-center px-8 py-3 rounded-full text-sm font-semibold text-white transition-all duration-300"
+      style={{
+        background: hovered ? "var(--accent-light)" : "var(--accent-primary)",
+        boxShadow: hovered
+          ? "0 0 32px rgba(74,138,115,0.55)"
+          : "0 0 20px rgba(43,87,72,0.4)",
+      }}
+    >
+      View My Work
+    </motion.a>
+  );
+}
+
+function SecondaryBtn() {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <motion.a
+      href="/Jehan Usama .pdf"
+      download
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.97 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="w-full sm:w-auto flex items-center justify-center px-8 py-3 rounded-full text-sm font-semibold border transition-all duration-300"
+      style={{
+        borderColor: "var(--accent-primary)",
+        background: hovered ? "var(--accent-primary)" : "transparent",
+        color:      hovered ? "#ffffff" : "var(--accent-light)",
+      }}
+    >
+      Download CV
+    </motion.a>
+  );
+}
+
 
 export const Hero = () => {
-  const text = "Front-End Engineer";
-
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-20 bg-[#0f0b18] overflow-hidden">
-      {/* Ambient glows */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-violet-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-fuchsia-600/8 rounded-full blur-[100px] pointer-events-none" />
+    <section
+      id="home"
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
+      style={{ background: "var(--bg-primary)" }}
+    >
+      <AnimatedBlob />
 
-      {/* Navbar */}
-      <nav className="absolute top-0 left-0 w-full px-6 md:px-20 py-6 flex justify-between items-center z-50">
-        <div className="text-white font-bold text-xl tracking-tight">JU.</div>
-        <div className="flex items-center gap-6 text-sm font-medium text-violet-300/60">
-          <Link href="#about" className="hover:text-violet-300 transition-colors">About</Link>
-          <Link href="#projects" className="hover:text-violet-300 transition-colors">Projects</Link>
-          <Link href="#contact" className="hover:text-violet-300 transition-colors">Contact</Link>
-        </div>
-      </nav>
+      <div className="relative z-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
 
-      {/* Main content: two-column layout */}
-      <div className="z-10 w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center mt-16">
-
-        {/* Left: Text */}
-        <div className="flex flex-col items-start">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-fuchsia-400 font-semibold text-sm md:text-base mb-4 tracking-wide"
+        <Reveal delay={0.1} width="fit-content">
+          <span
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium border"
+            style={{
+              borderColor: "var(--accent-primary)",
+              color:       "var(--accent-light)",
+              background:  "rgba(43,87,72,0.12)",
+              boxShadow:   "0 0 18px rgba(43,87,72,0.25)",
+            }}
           >
-            Hi, I&apos;m Jehan Usama
-          </motion.p>
+            <span>👋</span> Available for opportunities
+          </span>
+        </Reveal>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] text-rose-50 tracking-tight flex flex-wrap">
-            {text.split("").map((char, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.05, delay: index * 0.05 + 0.5 }}
-                className={char === " " ? "w-3 md:w-4" : ""}
-              >
-                {char}
-              </motion.span>
-            ))}
+        <Reveal delay={0.25} width="100%">
+          <h1
+            className="mt-6 font-extrabold tracking-tight leading-[1.08]"
+            style={{
+              fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+              background:
+                "linear-gradient(135deg, var(--text-primary) 40%, var(--accent-light) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            Jehan Usama
           </h1>
+        </Reveal>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.5 }}
-            className="mt-5 max-w-md text-base md:text-lg text-violet-200/60 font-medium leading-relaxed"
+        {/* Role */}  
+        <Reveal delay={0.4} width="fit-content">
+          <p
+            className="mt-3 text-lg md:text-xl font-semibold tracking-wide"
+            style={{ color: "var(--accent-light)" }}
           >
-            I build elegant, scalable, and highly interactive web applications, translating complex design concepts into beautiful code.
-          </motion.p>
+            Front-End Engineer
+          </p>
+        </Reveal>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.7 }}
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8"
+        {/* Tagline */}
+        <Reveal delay={0.55} width="fit-content">
+          <p
+            className="mt-4 text-sm md:text-base leading-relaxed max-w-xl"
+            style={{ color: "var(--text-muted)" }}
           >
-            <a
-              href="/Jehan_Usama.pdf"
-              className="group flex items-center justify-center gap-2 h-11 px-7 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 shadow-lg shadow-violet-500/30 hover:shadow-violet-500/50 hover:-translate-y-0.5 transition-all duration-300"
-            >
-              Resume
-              <Download className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
-            <a
-              href="#contact"
-              className="group flex items-center justify-center gap-2 h-11 px-7 rounded-full text-sm font-semibold text-violet-300 border border-violet-500/40 hover:border-violet-400 hover:bg-violet-500/10 hover:-translate-y-0.5 transition-all duration-300"
-            >
-              Contact Me
-              <Mail className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-          </motion.div>
+            Building scalable, responsive web experiences with React &amp; Next.js
+          </p>
+        </Reveal>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2.0 }}
-            className="flex items-center gap-6 mt-10 text-violet-400/40"
-          >
-            <a href="https://github.com/jehanusama" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors" aria-label="GitHub">
-              <Github className="w-5 h-5" />
-            </a>
-            <a href="https://linkedin.com/in/jehan-usama" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors" aria-label="LinkedIn">
-              <Linkedin className="w-5 h-5" />
-            </a>
-          </motion.div>
-        </div>
-
-        {/* Right: Profile Image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-          className="flex items-center justify-center md:justify-end"
-        >
-          <div className="relative">
-            {/* Outer glow ring */}
-            <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-violet-600/30 to-fuchsia-600/20 blur-2xl" />
-            {/* Decorative rotating ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute -inset-3 rounded-full border border-dashed border-violet-500/20"
-            />
-            {/* Image container */}
-            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-violet-700/50 shadow-2xl shadow-violet-900/50">
-              <Image
-                src="/Jehan.jpg"
-                alt="Jehan Usama - Front-End Engineer"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-              {/* Subtle inner overlay to blend with palette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-violet-950/30 via-transparent to-transparent" />
-            </div>
-            {/* Floating badge */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-[#16112a] border border-violet-800/60 px-4 py-2 rounded-full shadow-lg shadow-violet-900/50"
-            >
-              <span className="w-2 h-2 rounded-full bg-fuchsia-500 animate-pulse shadow-[0_0_6px_rgba(217,70,239,0.8)]" />
-              <span className="text-xs font-semibold text-violet-200/80 whitespace-nowrap">Open to Work</span>
-            </motion.div>
+        {/* CTA Buttons */}
+        <Reveal delay={0.7} width="100%">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
+            <PrimaryBtn />
+            <SecondaryBtn />
           </div>
-        </motion.div>
+        </Reveal>
+
+        {/* Social Icons */}
+        <Reveal delay={0.85} width="fit-content">
+          <div className="mt-8 flex items-center gap-3">
+            <SocialBtn
+              href="https://github.com/jehanusama"
+              label="GitHub"
+              icon={<Github className="w-[18px] h-[18px]" />}
+            />
+            <SocialBtn
+              href="https://linkedin.com/in/jehan-usama"
+              label="LinkedIn"
+              icon={<Linkedin className="w-[18px] h-[18px]" />}
+            />
+            <SocialBtn
+              href="mailto:jehan@example.com"
+              label="Email"
+              icon={<Mail className="w-[18px] h-[18px]" />}
+              external={false}
+            />
+          </div>
+        </Reveal>
       </div>
+
+      {/* Scroll down indicator */}
+      <ScrollIndicator />
     </section>
   );
 };
-
