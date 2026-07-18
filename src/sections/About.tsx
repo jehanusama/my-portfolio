@@ -4,11 +4,9 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin, GraduationCap, Award, Briefcase } from "lucide-react";
-import { Reveal } from "@/components/Reveal";
 
-/* ─────────────────────────────────────────────────────────
-   Quick-fact card data
-───────────────────────────────────────────────────────── */
+
+
 const FACTS = [
   {
     icon: <MapPin className="w-5 h-5" />,

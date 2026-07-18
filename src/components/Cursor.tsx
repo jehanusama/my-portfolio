@@ -13,7 +13,8 @@ export default function Cursor() {
   const cursorY = useSpring(0, { stiffness: 500, damping: 28 });
 
   useEffect(() => {
-    setMounted(true);
+    const t = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {

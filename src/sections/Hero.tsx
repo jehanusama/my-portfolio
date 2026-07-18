@@ -7,7 +7,6 @@ import { Github, Linkedin } from "@/components/Icons";
 import { Reveal } from "@/components/Reveal";
 
 
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 function AnimatedBlob() {
   return (
