@@ -105,9 +105,9 @@ function ProjectCard({ project, placeholderGradient }: ProjectCardProps) {
           animate={{ scale: hovered ? 1.05 : 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           style={{
-            background: project.image ? undefined : placeholderGradient,
+            backgroundImage: project.image ? `url("${project.image}")` : placeholderGradient,
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "top",
           }}
         >
           {/* Decorative mesh lines on placeholder */}
@@ -131,7 +131,10 @@ function ProjectCard({ project, placeholderGradient }: ProjectCardProps) {
           style={{ background: "rgba(13,21,18,0.65)" }}
         >
           {(project.liveUrl || project.githubUrl) && (
-            <motion.span
+            <motion.a
+              href={project.liveUrl || project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               animate={{ scale: hovered ? 1 : 0.88, opacity: hovered ? 1 : 0 }}
               transition={{ duration: 0.3 }}
               className="px-5 py-2 rounded-full text-sm font-semibold text-white border"
@@ -141,8 +144,8 @@ function ProjectCard({ project, placeholderGradient }: ProjectCardProps) {
                 backdropFilter: "blur(6px)",
               }}
             >
-              View Project
-            </motion.span>
+              {project.liveUrl ? "View Project" : "View Source"}
+            </motion.a>
           )}
         </motion.div>
       </div>
@@ -159,7 +162,7 @@ function ProjectCard({ project, placeholderGradient }: ProjectCardProps) {
 
         {/* Description */}
         <p
-          className="text-sm leading-relaxed line-clamp-2 flex-1"
+          className="text-sm leading-relaxed flex-1"
           style={{ color: "var(--text-muted)" }}
         >
           {project.description}
@@ -185,13 +188,6 @@ function ProjectCard({ project, placeholderGradient }: ProjectCardProps) {
               href={project.githubUrl}
               label="View source on GitHub"
               icon={<Github className="w-[15px] h-[15px]" />}
-            />
-          )}
-          {project.liveUrl && (
-            <LinkBtn
-              href={project.liveUrl}
-              label="View live demo"
-              icon={<ExternalLink className="w-[15px] h-[15px]" />}
             />
           )}
         </div>

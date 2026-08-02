@@ -11,63 +11,63 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "eyego-dashboard",
-    title: "EyeGo.Ai — Analytics Dashboard",
+    id: "veilora-store",
+    title: "Veilora Store",
     description:
-      "Scalable enterprise dashboard with real-time IoT sensor monitoring, forensic search, alert management, and role-based access — built for EyeGo.Ai.",
-    image: null,
-    techStack: ["Next.js", "TypeScript", "Redux Toolkit", "RTK Query", "Tailwind CSS"],
+      "A premium e-commerce application featuring robust user authentication, advanced cart management, and wishlist functionalities. Engineered with a custom luxury design system using Tailwind CSS, offering a dynamic and responsive shopping experience.",
+    image: "/images/projects/veilora.png",
+    techStack: ["React", "TypeScript", "Vite", "Tailwind CSS", "React Router DOM", "Axios", "Context API"],
     githubUrl: "",
-    liveUrl: "https://eyego.ai",
+    liveUrl: "https://veilora-five.vercel.app/",
   },
   {
-    id: "eeg-wheelchair",
-    title: "EEG Controlled Wheelchair System",
+    id: "analytics-dashboard",
+    title: "Analytics Dashboard Application",
     description:
-      "Graduation project (Itida-sponsored). Brain-signal–driven wheelchair prototype using Neurosky EEG, C++ firmware, and custom signal-filtering algorithms. Graded Excellent.",
+      "A full-featured analytics dashboard providing real-time data visualization with Recharts and complex table operations managed via Redux Toolkit. Includes comprehensive export capabilities and is fully Dockerized for production deployment.",
+    image: "/images/projects/dashboard.png",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Redux Toolkit", "Recharts", "jsPDF", "xlsx", "Docker"],
+    githubUrl: "https://github.com/jehanusama/Dashboard-Application",
+    liveUrl: "https://dashboard-application-coral.vercel.app/",
+  },
+  /*{
+    id: "sigmaderation",
+    title: "Sigmaderation - AI Content Moderation Frontend",
+    description:
+      "A high-performance B2B AI content moderation platform providing explainable NLP insights. Features a scalable architecture, advanced data visualization, strict accessibility standards, and seamless live/mock backend integration.",
     image: null,
-    techStack: ["C++", "Neurosky API", "Signal Processing", "Hardware Integration"],
-    githubUrl: "#",
+    techStack: ["React 19", "TypeScript", "Vite", "Tailwind CSS", "React Router 7", "Recharts", "Axios", "Vercel"],
+    githubUrl: "",
+    liveUrl: "https://sigmaderation.vercel.app/",
+  },*/
+  {
+    id: "project-x-nlp-frontend",
+    title: "Enterprise NLP Content Moderation Frontend",
+    description:
+      "An enterprise-grade, NLP-powered moderation interface built with an atomic component architecture. Implements an environment-aware service layer and centralized state management to deliver a highly responsive experience.",
+    image: "/images/projects/project-x.png",
+    techStack: ["React 19", "TypeScript", "Vite", "Tailwind CSS", "React Router 7", "Recharts", "Vercel"],
+    githubUrl: "",
+    liveUrl: "https://project-x-cyan-pi.vercel.app/",
+  },
+  {
+    id: "pyramis-travel-platform",
+    title: "Pyramis Travel & Booking Platform",
+    description:
+      "A high-performance travel and booking platform integrating Stripe for payments, Leaflet for maps, and SignalR for real-time synchronization. Features an AI-driven experience module and complex state management via Pinia.",
+    image: "/images/projects/pyramis.png",
+    techStack: ["Vue 3", "Vite", "Pinia", "Vue Router", "Tailwind CSS", "DaisyUI", "Stripe", "Leaflet", "Microsoft SignalR", "Chart.js", "Axios", "Day.js"],
+    githubUrl: "",
     liveUrl: "",
   },
   {
-    id: "angular-spa",
-    title: "Dynamic Angular SPA",
+    id: "books-authors-vue-cms",
+    title: "Books & Authors Management System",
     description:
-      "Feature-rich single-page application with full RESTful API integration, component-driven architecture, and reactive state management built during the DEPI initiative.",
-    image: null,
-    techStack: ["Angular", "TypeScript", "RxJS", "REST APIs", "Git"],
-    githubUrl: "#",
-    liveUrl: "#",
-  },
-  {
-    id: "ui-interfaces",
-    title: "Modern Interactive UI Interfaces",
-    description:
-      "Pixel-perfect, cross-browser–compatible web interfaces translated from Figma mockups with advanced CSS animations and SCSS architecture.",
-    image: null,
-    techStack: ["React", "SCSS", "JavaScript", "HTML5", "CSS3"],
-    githubUrl: "#",
-    liveUrl: "#",
-  },
-  {
-    id: "next-portfolio",
-    title: "Personal Portfolio — v2",
-    description:
-      "This very portfolio — dark sage-green theme, Framer Motion animations, component-driven Next.js architecture, and fully responsive design.",
-    image: null,
-    techStack: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
-    githubUrl: "https://github.com/jehanusama",
-    liveUrl: "#",
-  },
-  {
-    id: "vue-app",
-    title: "Vue.js E-Commerce Storefront",
-    description:
-      "Responsive product listing, cart management, and checkout flow built in Vue 3 with Composition API, Pinia store, and REST API integration.",
-    image: null,
-    techStack: ["Vue 3", "Pinia", "TypeScript", "Vite", "REST APIs"],
-    githubUrl: "#",
-    liveUrl: "#",
-  },
+      "A comprehensive CMS built with Vue 3 and Pinia for managing book and author catalogs. Features a public storefront and a secure admin dashboard with visual analytics, advanced data tables, and strict authentication guards.",
+    image: "/images/projects/books-authors.png",
+    techStack: ["Vue 3", "Vite", "Pinia", "Vue Router", "Tailwind CSS", "DaisyUI", "Axios", "Chart.js", "json-server", "FontAwesome"],
+    githubUrl: "",
+    liveUrl: "",
+  }
 ];
