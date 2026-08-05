@@ -30,19 +30,19 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/jehanusama/Dashboard-Application",
     liveUrl: "https://dashboard-application-coral.vercel.app/",
   },
-  /*{
-    id: "sigmaderation",
-    title: "Sigmaderation - AI Content Moderation Frontend",
+  {
+    id: "moderax",
+    title: "ModeraX - Explainable AI Content Moderation",
     description:
-      "A high-performance B2B AI content moderation platform providing explainable NLP insights. Features a scalable architecture, advanced data visualization, strict accessibility standards, and seamless live/mock backend integration.",
-    image: null,
-    techStack: ["React 19", "TypeScript", "Vite", "Tailwind CSS", "React Router 7", "Recharts", "Axios", "Vercel"],
+      "A high-performance, B2B single-page application for NLP-powered explainable AI content moderation. Features a scalable atomic component architecture, dynamic data visualization, and a decoupled API service layer to deliver an optimized and accessible user experience.",
+    image: "/images/projects/moderax.png",
+    techStack: ["React 19", "TypeScript", "Vite", "Tailwind CSS", "React Router 7", "Recharts", "Axios", "Google reCAPTCHA v3"],
     githubUrl: "",
-    liveUrl: "https://sigmaderation.vercel.app/",
-  },*/
+    liveUrl: "https://modera-x.vercel.app/",
+  },
   {
     id: "project-x-nlp-frontend",
-    title: "Enterprise NLP Content Moderation Frontend",
+    title: "Enterprise NLP Content Moderation",
     description:
       "An enterprise-grade, NLP-powered moderation interface built with an atomic component architecture. Implements an environment-aware service layer and centralized state management to deliver a highly responsive experience.",
     image: "/images/projects/project-x.png",
