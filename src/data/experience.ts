@@ -20,10 +20,11 @@ export const experienceEntries: ExperienceEntry[] = [
     type: "work",
     Icon: Briefcase,
     bullets: [
-      "Developed and maintained scalable dashboard features including forensic search, alert management, and IoT sensor monitoring.",
+      "Developed new features and resolved bugs across scalable dashboard modules as part of the core Front-End team.",
       "Integrated complex REST APIs using RTK Query with optimistic updates and caching strategies.",
       "Built interactive data visualization and reporting modules consumed by enterprise clients.",
       "Managed global application state with Redux Toolkit across feature-heavy modules.",
+      "Onboarded and mentored new intern developers, providing ongoing technical support and guidance.",
     ],
   },
   {
