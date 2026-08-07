@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Loader2, MessageCircle } from "lucide-react";
-import { Github, Linkedin } from "@/components/Icons";
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { Github, Linkedin, Whatsapp } from "@/components/Icons";
 import { Reveal } from "@/components/Reveal";
 
 
@@ -173,12 +173,6 @@ export const Contact = () => {
                 href="tel:+201202942911"
               />
               <InfoItem
-                icon={<MessageCircle className="w-5 h-5" />}
-                label="WhatsApp"
-                value="+20 120 294 2911"
-                href="https://wa.me/201202942911"
-              />
-              <InfoItem
                 icon={<MapPin className="w-5 h-5" />}
                 label="Location"
                 value="Tanta, Egypt"
@@ -196,6 +190,11 @@ export const Contact = () => {
                 href="https://linkedin.com/in/jehan-usama"
                 label="LinkedIn"
                 icon={<Linkedin className="w-[18px] h-[18px]" />}
+              />
+              <SocialBtn
+                href="https://wa.me/201202942911"
+                label="WhatsApp"
+                icon={<Whatsapp className="w-[18px] h-[18px]" />}
               />
             </div>
           </motion.div>

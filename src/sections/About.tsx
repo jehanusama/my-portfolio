@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MapPin, GraduationCap, Award, Briefcase } from "lucide-react";
+import { MapPin, GraduationCap, Briefcase } from "lucide-react";
 
 
 
@@ -16,10 +16,10 @@ const FACTS = [
     icon: <GraduationCap className="w-5 h-5" />,
     text: "B.Sc. Electronics & Communication Engineering",
   },
-  {
+ /* {
     icon: <Award className="w-5 h-5" />,
     text: "83.13% — With Honors",
-  },
+  },*/
   {
     icon: <Briefcase className="w-5 h-5" />,
     text: "Front-End Engineer @ EyeGo.Ai",
