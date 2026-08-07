@@ -10,9 +10,7 @@ import {
 } from "react-icons/si";
 import { Reveal } from "@/components/Reveal";
 
-/* ═══════════════════════════════════════════════════════
-   Data
-═══════════════════════════════════════════════════════ */
+
 const CATEGORIES = [
   {
     id: "frontend",
@@ -59,9 +57,6 @@ const CATEGORIES = [
 
 type CategoryId = (typeof CATEGORIES)[number]["id"];
 
-/* ═══════════════════════════════════════════════════════
-   SkillCard
-═══════════════════════════════════════════════════════ */
 interface SkillCardProps {
   name: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -128,9 +123,7 @@ function SkillCard({ name, Icon, color }: SkillCardProps) {
   );
 }
 
-/* ═══════════════════════════════════════════════════════
-   Tab Button
-═══════════════════════════════════════════════════════ */
+
 interface TabBtnProps {
   label: string;
   active: boolean;
@@ -160,9 +153,7 @@ function TabBtn({ label, active, onClick }: TabBtnProps) {
   );
 }
 
-/* ═══════════════════════════════════════════════════════
-   Skills Section
-═══════════════════════════════════════════════════════ */
+
 const containerVariants: Variants = {
   hidden: {},
   visible: {

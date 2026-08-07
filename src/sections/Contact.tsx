@@ -83,16 +83,39 @@ function InfoItem({ icon, label, value, href }: InfoItemProps) {
 export const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Mock submission
-    setTimeout(() => {
+    setError(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Something went wrong. Please try again.");
+      } else {
+        setIsSuccess(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setIsSuccess(false), 5000);
+      }
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      setTimeout(() => setIsSuccess(false), 4000);
-    }, 1500);
+    }
   };
 
   return (
@@ -199,7 +222,10 @@ export const Contact = () => {
                 </label>
                 <input
                   type="text"
+                  name="name"
                   required
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Your Name"
                   className="w-full px-5 py-3.5 rounded-xl text-sm font-medium outline-none transition-all duration-300"
                   style={{
@@ -224,7 +250,10 @@ export const Contact = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   required
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="your@email.com"
                   className="w-full px-5 py-3.5 rounded-xl text-sm font-medium outline-none transition-all duration-300"
                   style={{
@@ -248,8 +277,11 @@ export const Contact = () => {
                   Message
                 </label>
                 <textarea
+                  name="message"
                   required
                   rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="How can I help you?"
                   className="w-full px-5 py-4 rounded-xl text-sm font-medium outline-none transition-all duration-300 resize-none"
                   style={{
@@ -296,6 +328,13 @@ export const Contact = () => {
                   </>
                 )}
               </motion.button>
+
+              {/* Error message */}
+              {error && (
+                <p className="text-center text-sm font-medium" style={{ color: "#e05252" }}>
+                  {error}
+                </p>
+              )}
             </form>
           </motion.div>
 

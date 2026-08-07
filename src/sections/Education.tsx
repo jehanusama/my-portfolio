@@ -5,9 +5,7 @@ import { motion } from "framer-motion";
 import { GraduationCap, Award, Cpu, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
-/* ─────────────────────────────────────────────────────────
-   GlowBadge — small pill with sage green colour
-───────────────────────────────────────────────────────── */
+
 function GlowBadge({ children }: { children: React.ReactNode }) {
   return (
     <span
@@ -24,9 +22,7 @@ function GlowBadge({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ─────────────────────────────────────────────────────────
-   IconCircle — icon inside a sage green glowing circle
-───────────────────────────────────────────────────────── */
+
 function IconCircle({ icon }: { icon: React.ReactNode }) {
   return (
     <motion.div
@@ -47,9 +43,7 @@ function IconCircle({ icon }: { icon: React.ReactNode }) {
   );
 }
 
-/* ─────────────────────────────────────────────────────────
-   EducationCard — degree info
-───────────────────────────────────────────────────────── */
+
 function EducationCard() {
   const [hovered, setHovered] = React.useState(false);
 
@@ -115,10 +109,7 @@ function EducationCard() {
   );
 }
 
-/* ─────────────────────────────────────────────────────────
-   GradProjectCard — featured graduation project
-   Animated shimmer border using keyframes via style tag
-───────────────────────────────────────────────────────── */
+
 function GradProjectCard() {
   return (
     <>
@@ -226,9 +217,7 @@ function GradProjectCard() {
   );
 }
 
-/* ─────────────────────────────────────────────────────────
-   Education Section
-───────────────────────────────────────────────────────── */
+
 export const Education = () => {
   return (
     <section

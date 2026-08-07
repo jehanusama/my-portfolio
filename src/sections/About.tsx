@@ -14,7 +14,7 @@ const FACTS = [
   },
   {
     icon: <GraduationCap className="w-5 h-5" />,
-    text: "B.Eng Electronics & Communication",
+    text: "B.Sc. Electronics & Communication Engineering",
   },
   {
     icon: <Award className="w-5 h-5" />,
@@ -26,9 +26,7 @@ const FACTS = [
   },
 ] as const;
 
-/* ─────────────────────────────────────────────────────────
-   FactCard — single hoverable info tile
-───────────────────────────────────────────────────────── */
+
 interface FactCardProps {
   icon: React.ReactNode;
   text: string;
@@ -145,9 +143,6 @@ function ProfileImage() {
   );
 }
 
-/* ─────────────────────────────────────────────────────────
-   About Section
-───────────────────────────────────────────────────────── */
 export const About = () => {
   return (
     <section
@@ -231,7 +226,7 @@ export const About = () => {
               <span style={{ color: "var(--accent-light)" }}>
                 React.js, Next.js, TypeScript, Redux Toolkit,
               </span>{" "}
-              and RTK Query. I hold a B.Eng in Electronics &amp; Communication
+              and RTK Query. I hold a B.Sc. in Electronics &amp; Communication
               Engineering from Tanta University, graduating with honors.
               Currently building scalable dashboard features at{" "}
               <span style={{ color: "var(--accent-light)" }}>EyeGo.Ai</span>,
