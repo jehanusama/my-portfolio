@@ -80,16 +80,17 @@ function SkillCard({ name, Icon, color }: SkillCardProps) {
   return (
     <motion.div
       variants={cardVariants}
+      whileHover={{ y: -4 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl border cursor-default transition-all duration-300"
+      className="flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl border cursor-default"
       style={{
         background:    "var(--bg-secondary)",
         borderColor:   hovered ? "var(--accent-primary)" : "var(--border-color)",
         boxShadow:     hovered
           ? "0 8px 28px rgba(43,87,72,0.25), 0 0 0 1px var(--accent-primary)"
           : "none",
-        transform:     hovered ? "translateY(-4px)" : "translateY(0)",
+        transition:    "background 0.3s, border-color 0.3s, box-shadow 0.3s",
       }}
     >
       {/* Icon */}

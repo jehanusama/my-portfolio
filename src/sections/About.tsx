@@ -40,14 +40,15 @@ function FactCard({ icon, text, delay }: FactCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      whileHover={{ y: -3 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex items-start gap-3 p-4 rounded-xl border transition-all duration-300"
+      className="flex items-start gap-3 p-4 rounded-xl border"
       style={{
         background:   "var(--bg-secondary)",
         borderColor:  hovered ? "var(--accent-primary)" : "var(--border-color)",
         boxShadow:    hovered ? "0 8px 24px rgba(43,87,72,0.2)" : "none",
-        transform:    hovered ? "translateY(-3px)" : "translateY(0)",
+        transition:   "background 0.3s, border-color 0.3s, box-shadow 0.3s",
       }}
     >
       <span

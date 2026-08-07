@@ -25,11 +25,12 @@ function SocialBtn({ href, label, icon }: SocialBtnProps) {
       transition={{ type: "spring", stiffness: 300, damping: 18 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex items-center justify-center w-11 h-11 rounded-full border transition-all duration-300"
+      className="flex items-center justify-center w-11 h-11 rounded-full border"
       style={{
         borderColor: hovered ? "var(--accent-primary)" : "var(--border-color)",
         background: hovered ? "var(--accent-primary)" : "var(--bg-secondary)",
         color: hovered ? "#ffffff" : "var(--text-muted)",
+        transition: "background 0.3s, border-color 0.3s, color 0.3s",
       }}
     >
       {icon}
@@ -304,11 +305,12 @@ export const Contact = () => {
                 whileTap={{ scale: 0.96 }}
                 type="submit"
                 disabled={isSubmitting || isSuccess}
-                className="mt-2 w-full flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-white transition-all duration-300 relative overflow-hidden"
+                className="mt-2 w-full flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-white relative overflow-hidden"
                 style={{
                   background: isSuccess ? "#4a8a73" : "var(--accent-primary)",
                   boxShadow: "0 0 20px rgba(43,87,72,0.4)",
                   cursor: isSubmitting || isSuccess ? "not-allowed" : "pointer",
+                  transition: "background 0.3s, box-shadow 0.3s",
                 }}
               >
                 {isSubmitting ? (

@@ -69,32 +69,32 @@ function LinkBtn({ href, label, icon }: LinkBtnProps) {
 interface ProjectCardProps {
   project: Project;
   placeholderGradient: string;
+  index: number;
 }
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.55, ease: "easeOut" }
-  }
-};
 
-function ProjectCard({ project, placeholderGradient }: ProjectCardProps) {
+function ProjectCard({ project, placeholderGradient, index }: ProjectCardProps) {
   const [hovered, setHovered] = React.useState(false);
+  
+  // Alternate slide direction for grid layout
+  const slideFrom = index % 2 === 0 ? -50 : 50;
 
   return (
     <motion.article
-      variants={cardVariants}
+      initial={{ opacity: 0, x: slideFrom }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+      whileHover={{ y: -6 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex flex-col rounded-2xl border overflow-hidden transition-all duration-400"
+      className="flex flex-col rounded-2xl border overflow-hidden"
       style={{
         background:   "var(--bg-secondary)",
         borderColor:  hovered ? "var(--accent-primary)" : "var(--border-color)",
         boxShadow:    hovered
           ? "0 16px 48px rgba(43,87,72,0.22), 0 0 0 1px var(--accent-primary)"
           : "0 2px 12px rgba(0,0,0,0.2)",
-        transform:    hovered ? "translateY(-6px)" : "translateY(0)",
+        transition: "background 0.3s, border-color 0.3s, box-shadow 0.3s",
       }}
     >
       {/* ── Thumbnail ── */}
@@ -197,14 +197,7 @@ function ProjectCard({ project, placeholderGradient }: ProjectCardProps) {
 }
 
 
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
-};
+// Removed containerVariants as we trigger animations individually on scroll
 
 export const Projects = () => {
   return (
@@ -251,21 +244,16 @@ export const Projects = () => {
         </div>
 
         {/* Cards grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <ProjectCard
               key={project.id}
               project={project}
               placeholderGradient={PLACEHOLDERS[i % PLACEHOLDERS.length]}
+              index={i}
             />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

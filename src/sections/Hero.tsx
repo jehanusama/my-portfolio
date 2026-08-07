@@ -90,11 +90,12 @@ function SocialBtn({ href, label, icon, external = true }: SocialBtnProps) {
       transition={{ type: "spring", stiffness: 300, damping: 18 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex items-center justify-center w-11 h-11 rounded-full border transition-all duration-300"
+      className="flex items-center justify-center w-11 h-11 rounded-full border"
       style={{
         borderColor: hovered ? "var(--accent-primary)" : "var(--border-color)",
         background:  hovered ? "var(--accent-primary)" : "var(--bg-secondary)",
         color:       hovered ? "#ffffff" : "var(--text-muted)",
+        transition:  "background 0.3s, border-color 0.3s, color 0.3s",
       }}
     >
       {icon}
@@ -111,12 +112,13 @@ function PrimaryBtn() {
       whileTap={{ scale: 0.97 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="w-full sm:w-auto flex items-center justify-center px-8 py-3 rounded-full text-sm font-semibold text-white transition-all duration-300"
+      className="w-full sm:w-auto flex items-center justify-center px-8 py-3 rounded-full text-sm font-semibold text-white"
       style={{
         background: hovered ? "var(--accent-light)" : "var(--accent-primary)",
         boxShadow: hovered
           ? "0 0 32px rgba(74,138,115,0.55)"
           : "0 0 20px rgba(43,87,72,0.4)",
+        transition: "background 0.3s, box-shadow 0.3s",
       }}
     >
       View My Work
@@ -134,11 +136,12 @@ function SecondaryBtn() {
       whileTap={{ scale: 0.97 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="w-full sm:w-auto flex items-center justify-center px-8 py-3 rounded-full text-sm font-semibold border transition-all duration-300"
+      className="w-full sm:w-auto flex items-center justify-center px-8 py-3 rounded-full text-sm font-semibold border"
       style={{
         borderColor: "var(--accent-primary)",
         background: hovered ? "var(--accent-primary)" : "transparent",
         color:      hovered ? "#ffffff" : "var(--accent-light)",
+        transition: "background 0.3s, color 0.3s",
       }}
     >
       Download CV

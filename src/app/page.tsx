@@ -1,10 +1,12 @@
 import { Hero } from "@/sections/Hero";
-import { About } from "@/sections/About";
-import { Skills } from "@/sections/Skills";
-import { Projects } from "@/sections/Projects";
-import { Experience } from "@/sections/Experience";
-import { Education } from "@/sections/Education";
-import { Contact } from "@/sections/Contact";
+import dynamic from "next/dynamic";
+
+const About = dynamic(() => import("@/sections/About").then((mod) => mod.About));
+const Skills = dynamic(() => import("@/sections/Skills").then((mod) => mod.Skills));
+const Projects = dynamic(() => import("@/sections/Projects").then((mod) => mod.Projects));
+const Experience = dynamic(() => import("@/sections/Experience").then((mod) => mod.Experience));
+const Education = dynamic(() => import("@/sections/Education").then((mod) => mod.Education));
+const Contact = dynamic(() => import("@/sections/Contact").then((mod) => mod.Contact));
 import { Footer } from "@/components/Footer";
 
 import { PageTransition } from "@/components/PageTransition";

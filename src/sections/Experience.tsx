@@ -67,16 +67,17 @@ function ExperienceCard({ entry, side, index }: ExperienceCardProps) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+      whileHover={{ y: -4 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="p-5 md:p-6 rounded-2xl border transition-all duration-300"
+      className="p-5 md:p-6 rounded-2xl border"
       style={{
         background:  "var(--bg-secondary)",
         borderColor: hovered ? "var(--accent-primary)" : "var(--border-color)",
         boxShadow:   hovered
           ? "0 12px 36px rgba(43,87,72,0.2), 0 0 0 1px var(--accent-primary)"
           : "0 2px 10px rgba(0,0,0,0.18)",
-        transform:   hovered ? "translateY(-4px)" : "translateY(0)",
+        transition: "background 0.3s, border-color 0.3s, box-shadow 0.3s",
       }}
     >
       {/* Header row */}

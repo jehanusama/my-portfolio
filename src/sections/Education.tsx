@@ -53,14 +53,15 @@ function EducationCard() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -4 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex flex-col gap-4 p-6 md:p-8 rounded-2xl border transition-all duration-300 h-full"
+      className="flex flex-col gap-4 p-6 md:p-8 rounded-2xl border h-full"
       style={{
         background:  "var(--bg-secondary)",
         borderColor: hovered ? "var(--accent-primary)" : "var(--border-color)",
         boxShadow:   hovered ? "0 12px 36px rgba(43,87,72,0.18)" : "0 2px 10px rgba(0,0,0,0.15)",
-        transform:   hovered ? "translateY(-4px)" : "translateY(0)",
+        transition:  "background 0.3s, border-color 0.3s, box-shadow 0.3s",
       }}
     >
       {/* Icon + label */}
