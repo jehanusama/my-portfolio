@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { Github } from "@/components/Icons";
 import { ExternalLink } from "lucide-react";
@@ -105,11 +106,18 @@ function ProjectCard({ project, placeholderGradient, index }: ProjectCardProps) 
           animate={{ scale: hovered ? 1.05 : 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           style={{
-            backgroundImage: project.image ? `url("${project.image}")` : placeholderGradient,
-            backgroundSize: "cover",
-            backgroundPosition: "top",
+            background: project.image ? "transparent" : placeholderGradient,
           }}
         >
+          {project.image && (
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover object-top"
+            />
+          )}
           {/* Decorative mesh lines on placeholder */}
           {!project.image && (
             <div
@@ -212,7 +220,6 @@ export const Projects = () => {
         aria-hidden="true"
         style={{
           background: "radial-gradient(circle, rgba(43,87,72,0.07) 0%, transparent 70%)",
-          filter: "blur(90px)",
         }}
       />
 

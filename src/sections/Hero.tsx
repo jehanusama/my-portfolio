@@ -20,7 +20,6 @@ function AnimatedBlob() {
         style={{
           background:
             "radial-gradient(circle, rgba(43,87,72,0.28) 0%, rgba(43,87,72,0.08) 55%, transparent 75%)",
-          filter: "blur(80px)",
         }}
         animate={{ y: [0, 40, -20, 0], x: [0, 30, -20, 0], scale: [1, 1.08, 0.95, 1] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
@@ -31,7 +30,6 @@ function AnimatedBlob() {
         style={{
           background:
             "radial-gradient(circle, rgba(74,138,115,0.15) 0%, transparent 70%)",
-          filter: "blur(60px)",
         }}
         animate={{ y: [0, -30, 20, 0], x: [0, -20, 30, 0], scale: [1, 0.92, 1.06, 1] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}

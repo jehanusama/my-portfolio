@@ -232,7 +232,6 @@ export const Education = () => {
         aria-hidden="true"
         style={{
           background: "radial-gradient(circle, rgba(43,87,72,0.08) 0%, transparent 70%)",
-          filter: "blur(90px)",
         }}
       />
 

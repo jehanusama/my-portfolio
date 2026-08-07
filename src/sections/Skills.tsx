@@ -187,7 +187,6 @@ export const Skills = () => {
         aria-hidden="true"
         style={{
           background: "radial-gradient(circle, rgba(43,87,72,0.07) 0%, transparent 70%)",
-          filter: "blur(80px)",
         }}
       />
 

@@ -5,12 +5,13 @@ import { motion, useSpring } from "framer-motion";
 
 export default function Cursor() {
   const [mounted, setMounted] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [hidden, setHidden] = useState(true);
 
   const cursorX = useSpring(0, { stiffness: 500, damping: 28 });
   const cursorY = useSpring(0, { stiffness: 500, damping: 28 });
+  const dotX = useSpring(0, { stiffness: 1000, damping: 40 });
+  const dotY = useSpring(0, { stiffness: 1000, damping: 40 });
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 0);
@@ -22,7 +23,8 @@ export default function Cursor() {
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const updatePosition = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      dotX.set(e.clientX);
+      dotY.set(e.clientY);
       cursorX.set(e.clientX - 16);
       cursorY.set(e.clientY - 16);
       if (hidden) setHidden(false);
@@ -70,11 +72,11 @@ export default function Cursor() {
           opacity: hidden ? 0 : 1,
         }}
       />
-      <div
+      <motion.div
         className="pointer-events-none fixed top-0 left-0 z-[100] h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white mix-blend-difference hidden md:block transition-opacity duration-300"
         style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
+          x: dotX,
+          y: dotY,
           opacity: hidden ? 0 : isHovered ? 0 : 1,
         }}
       />

@@ -110,7 +110,6 @@ function ProfileImage() {
         style={{
           background:
             "radial-gradient(circle, rgba(43,87,72,0.35) 0%, transparent 70%)",
-          filter: "blur(32px)",
         }}
       />
 
@@ -157,7 +156,6 @@ export const About = () => {
         style={{
           background:
             "radial-gradient(circle, rgba(43,87,72,0.08) 0%, transparent 70%)",
-          filter: "blur(80px)",
         }}
         aria-hidden="true"
       />
