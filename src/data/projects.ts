@@ -27,7 +27,7 @@ export const projects: Project[] = [
       "A full-featured analytics dashboard providing real-time data visualization with Recharts and complex table operations managed via Redux Toolkit. Includes comprehensive export capabilities and is fully Dockerized for production deployment.",
     image: "/images/projects/dashboard.png",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Redux Toolkit", "Recharts", "jsPDF", "xlsx", "Docker"],
-    githubUrl: "https://github.com/jehanusama/Dashboard-Application",
+    githubUrl: "",
     liveUrl: "https://dashboard-application-coral.vercel.app/",
   },
   {
