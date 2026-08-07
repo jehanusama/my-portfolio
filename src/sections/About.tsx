@@ -124,7 +124,7 @@ function ProfileImage() {
         }}
       >
         <Image
-          src="/Jehan.jpg"
+          src="/images/Jehan.jpg"
           alt="Jehan Usama — Front-End Engineer"
           fill
           className="object-cover object-top"
