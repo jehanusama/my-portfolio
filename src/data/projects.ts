@@ -31,6 +31,26 @@ export const projects: Project[] = [
     liveUrl: "https://dashboard-application-coral.vercel.app/",
   },
   {
+    id: "stockly-pos-inventory",
+    title: "Stockly - POS, Inventory & Profit Analytics Platform",
+    description:
+      "A full-featured POS, inventory management, and financial analytics platform engineered for retail operations. Features real-time stock tracking, automated margin calculations, interactive Recharts dashboards, and Supabase database integration.",
+    image: "/images/projects/stockly.png",
+    techStack: [
+      "React 19",
+      "Vite",
+      "JavaScript",
+      "Tailwind CSS",
+      "Supabase",
+      "PostgreSQL",
+      "Recharts",
+      "React Router",
+      "Context API"
+    ],
+    githubUrl: "https://github.com/jehanusama/stockly.git",
+    liveUrl: "https://stockly-dash.vercel.app/",
+  },
+  {
     id: "moderax",
     title: "ModeraX - Explainable AI Content Moderation",
     description:

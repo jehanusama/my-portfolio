@@ -88,7 +88,7 @@ function ProjectCard({ project, placeholderGradient, index }: ProjectCardProps) 
       whileHover={{ y: -6 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex flex-col rounded-2xl border overflow-hidden"
+      className="flex flex-col rounded-2xl border overflow-hidden h-full"
       style={{
         background:   "var(--bg-secondary)",
         borderColor:  hovered ? "var(--accent-primary)" : "var(--border-color)",
@@ -252,14 +252,25 @@ export const Projects = () => {
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              placeholderGradient={PLACEHOLDERS[i % PLACEHOLDERS.length]}
-              index={i}
-            />
-          ))}
+          {projects.map((project, i) => {
+            const isLastAndOdd = projects.length % 2 !== 0 && i === projects.length - 1;
+            return (
+              <div
+                key={project.id}
+                className={
+                  isLastAndOdd
+                    ? "md:col-span-2 md:w-[calc(50%-12px)] md:justify-self-center w-full flex flex-col"
+                    : "w-full flex flex-col"
+                }
+              >
+                <ProjectCard
+                  project={project}
+                  placeholderGradient={PLACEHOLDERS[i % PLACEHOLDERS.length]}
+                  index={i}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
