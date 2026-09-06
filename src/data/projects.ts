@@ -47,7 +47,7 @@ export const projects: Project[] = [
       "React Router",
       "Context API"
     ],
-    githubUrl: "https://github.com/jehanusama/stockly.git",
+    githubUrl: "",
     liveUrl: "https://stockly-dash.vercel.app/",
   },
   {
